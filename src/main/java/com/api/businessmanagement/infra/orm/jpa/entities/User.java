@@ -1,0 +1,62 @@
+package com.api.businessmanagement.infra.orm.jpa.entities;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "users")
+@Getter
+@Setter
+@SQLDelete(sql = "UPDATE users SET deleted = true where id = ?")
+@Where(clause = "deleted = false")
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private UUID id;
+
+	@Column(name = "name", nullable = false, length = 32)
+	private String name;
+
+	@Column(name = "lastname", nullable = false, length = 128)
+	private String lastname;
+
+	@Column(name = "email", nullable = false, length = 255, unique = true, updatable = true)
+	private String email;
+
+	@Column(name = "password", nullable = false, length = 255)
+	private String password;
+
+	@Column(name = "deleted")
+	private boolean deleted = false;
+
+	@Column(name = "created_at", updatable = false)
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+
+	@UpdateTimestamp
+	@Column(name = "updated_at")
+	private LocalDateTime updatedAt;
+
+	public UUID getId() {
+		return id;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+}
