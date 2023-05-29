@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.api</groupId>
-	<artifactId>pet-shop</artifactId>
+	<artifactId>business-nanagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pet-shop</name>
-	<description>A simple API for pet shop</description>
+	<name>business-nanagement</name>
+	<description>A simple API Business Management</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

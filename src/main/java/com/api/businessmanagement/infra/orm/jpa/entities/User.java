@@ -19,8 +19,6 @@ import java.util.UUID;
 @SQLDelete(sql = "UPDATE users SET deleted = true where id = ?")
 @Where(clause = "deleted = false")
 public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
@@ -36,6 +34,9 @@ public class User implements Serializable {
 
 	@Column(name = "password", nullable = false, length = 255)
 	private String password;
+
+	@ManyToOne
+	private Company company;
 
 	@Column(name = "deleted")
 	private boolean deleted = false;
