@@ -1,6 +1,7 @@
 package com.api.businessmanagement.application.dto.requests.users;
 
 import com.api.businessmanagement.infra.orm.jpa.entities.User;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -12,7 +13,6 @@ import java.util.UUID;
 @Getter
 @Setter
 public abstract class UserRequestDTO {
-
 	protected UUID id;
 
 	@NotBlank(message = "The field name is required")

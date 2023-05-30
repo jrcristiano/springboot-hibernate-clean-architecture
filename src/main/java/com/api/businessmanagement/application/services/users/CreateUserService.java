@@ -7,6 +7,7 @@ import com.api.businessmanagement.application.dto.requests.users.UserCreateDTO;
 import com.api.businessmanagement.infra.handlers.exceptions.ConflictErrorException;
 import com.api.businessmanagement.infra.orm.jpa.entities.User;
 import com.api.businessmanagement.infra.orm.jpa.repositories.UserRepository;
+import com.api.businessmanagement.infra.utils.BcryptPassword;
 
 @Service
 public class CreateUserService {
@@ -22,12 +23,13 @@ public class CreateUserService {
 			throw new ConflictErrorException("E-mail address already exists.");
 		}
 
+		var encodedPassword = BcryptPassword.encode(userCreateDTO.getPassword());
 		var userEntity = new com.api.businessmanagement.domain.entities.User(
 			userCreateDTO.getId(),
 			userCreateDTO.getName(),
 			userCreateDTO.getLastname(),
 			userCreateDTO.getEmail(),
-			userCreateDTO.getPassword(),
+			encodedPassword,
 			null,
 			null
 		);

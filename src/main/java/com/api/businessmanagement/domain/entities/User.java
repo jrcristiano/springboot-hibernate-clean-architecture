@@ -1,11 +1,10 @@
 package com.api.businessmanagement.domain.entities;
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+
+import com.api.businessmanagement.infra.utils.BcryptPassword;
 
 @Getter
 public class User extends Entity {
@@ -44,7 +43,7 @@ public class User extends Entity {
 		this.name = name;
 		this.lastname = lastname;
 		this.email = email;
-		this.password = new BCryptPasswordEncoder().encode(password);
+		this.password = password;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
@@ -71,5 +70,6 @@ public class User extends Entity {
 
 	public String getPassword() {
 		return password;
+		// return BcryptPassword.encode(password);
 	}
 }
