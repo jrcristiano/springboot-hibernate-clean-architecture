@@ -1,12 +1,8 @@
 package com.api.businessmanagement.domain.entities;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import com.api.businessmanagement.infra.utils.BcryptPassword;
-
-@Getter
 public class User extends Entity {
 	private UUID id;
 	private String name;
@@ -70,6 +66,5 @@ public class User extends Entity {
 
 	public String getPassword() {
 		return password;
-		// return BcryptPassword.encode(password);
 	}
 }

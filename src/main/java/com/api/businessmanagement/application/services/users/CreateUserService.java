@@ -19,11 +19,13 @@ public class CreateUserService {
 
 	public User execute(UserCreateDTO userCreateDTO) {
 		var registeredUser = userRepository.findUserByEmail(userCreateDTO.getEmail());
+
 		if (registeredUser.isPresent()) {
 			throw new ConflictErrorException("E-mail address already exists.");
 		}
 
 		var encodedPassword = BcryptPassword.encode(userCreateDTO.getPassword());
+
 		var userEntity = new com.api.businessmanagement.domain.entities.User(
 			userCreateDTO.getId(),
 			userCreateDTO.getName(),

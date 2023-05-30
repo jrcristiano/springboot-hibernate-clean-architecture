@@ -14,10 +14,10 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
 @SQLDelete(sql = "UPDATE users SET deleted = true where id = ?")
 @Where(clause = "deleted = false")
+@Getter
+@Setter
 public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,7 +29,7 @@ public class User implements Serializable {
 	@Column(name = "lastname", nullable = false, length = 128)
 	private String lastname;
 
-	@Column(name = "email", nullable = false, length = 255, unique = true, updatable = true)
+	@Column(name = "email", nullable = false, length = 255, unique = true)
 	private String email;
 
 	@Column(name = "password", nullable = false, length = 255)
@@ -48,16 +48,4 @@ public class User implements Serializable {
 	@UpdateTimestamp
 	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
-
-	public UUID getId() {
-		return id;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
 }

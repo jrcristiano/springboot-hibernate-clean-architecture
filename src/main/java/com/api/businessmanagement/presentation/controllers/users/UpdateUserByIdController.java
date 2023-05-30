@@ -36,7 +36,7 @@ public class UpdateUserByIdController {
 		logger.info("USER UPDATED SUCCESSFULLY: [PUT] api/users/{id}");
 
 		return ResponseEntity.status(HttpStatus.OK).body(
-			(UserDTO) new UserDTO().convertToDTO(updatedUser)
+			(UserUpdateDTO) new UserUpdateDTO().convertToDTO(updatedUser)
 		);
 	}
 }

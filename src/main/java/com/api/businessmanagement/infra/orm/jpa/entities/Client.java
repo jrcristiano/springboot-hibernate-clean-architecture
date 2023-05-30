@@ -50,8 +50,8 @@ public class Client implements Serializable {
 	@Column(name = "responsible_name", nullable = false, length = 32)
 	private String responsibleName;
 
-	// Uma empresa para muitos usuários
-	// O param "mappedBy" referencia o nome da propriedade na entity User
+	// Uma empresa para muitos empresas
+	// O param "mappedBy" referencia o nome da propriedade na entity Company
 	@OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
 	private List<Company> companies;
 

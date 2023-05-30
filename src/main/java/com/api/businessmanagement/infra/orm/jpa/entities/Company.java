@@ -54,7 +54,6 @@ public class Company implements Serializable {
 	@OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
 	private List<User> users;
 
-
 	@ManyToOne
 	private Client client;
 

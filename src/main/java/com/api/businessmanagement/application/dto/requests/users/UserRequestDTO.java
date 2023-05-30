@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+
 @Getter
 @Setter
 public abstract class UserRequestDTO {
@@ -32,6 +33,8 @@ public abstract class UserRequestDTO {
 	@Size(min = 8, max = 255, message = "The field password must have between 8 and 255 characters")
 	protected String password;
 
+	protected LocalDateTime createdAt;
+
 	protected LocalDateTime updatedAt;
 
 	public UserRequestDTO convertToDTO(User user) {
@@ -41,14 +44,16 @@ public abstract class UserRequestDTO {
 			user.getLastname(),
 			user.getEmail(),
 			user.getPassword(),
-			null,
-			null
+			user.getCreatedAt(),
+			user.getUpdatedAt()
 		);
 
 		this.setId(userEntity.getId());
 		this.setName(userEntity.getName());
 		this.setLastname(userEntity.getLastname());
 		this.setEmail(userEntity.getEmail());
+		this.setCreatedAt(userEntity.getCreatedAt());
+		this.setUpdatedAt(userEntity.getUpdatedAt());
 
 		return this;
 	}
