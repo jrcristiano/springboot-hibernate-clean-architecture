@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.businessmanagement.application.dto.requests.users.UserUpdateDTO;
-import com.api.businessmanagement.application.dto.responses.users.UserDTO;
-import com.api.businessmanagement.application.usecases.users.UpdateUserByIdUseCase;
+import com.api.businessmanagement.application.users.dto.requests.UserRequestDTO;
+import com.api.businessmanagement.application.users.dto.requests.UserUpdateDTO;
+import com.api.businessmanagement.application.users.usecases.UpdateUserByIdUseCase;
 
 import jakarta.validation.Valid;
 
@@ -28,7 +28,7 @@ public class UpdateUserByIdController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> execute(
+	public ResponseEntity<UserRequestDTO> execute(
 		@PathVariable("id") UUID id, @RequestBody @Valid UserUpdateDTO userUpdateDTO
 	) {
 		var updatedUser = updateUserByIdUseCase.execute(id, userUpdateDTO);
@@ -36,7 +36,7 @@ public class UpdateUserByIdController {
 		logger.info("USER UPDATED SUCCESSFULLY: [PUT] api/users/{id}");
 
 		return ResponseEntity.status(HttpStatus.OK).body(
-			(UserUpdateDTO) new UserUpdateDTO().convertToDTO(updatedUser)
+			(UserRequestDTO) new UserUpdateDTO().convertToDTO(updatedUser)
 		);
 	}
 }

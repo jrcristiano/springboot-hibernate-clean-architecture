@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.businessmanagement.application.dto.responses.users.UserDTO;
-import com.api.businessmanagement.application.usecases.users.GetUsersPaginateUseCase;
+import com.api.businessmanagement.application.users.dto.responses.UserDTO;
+import com.api.businessmanagement.application.users.usecases.GetUsersPaginateUseCase;
 
 @RestController
 @RequestMapping("/api/users")

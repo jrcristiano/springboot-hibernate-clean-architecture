@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.businessmanagement.application.dto.requests.users.UserCreateDTO;
-import com.api.businessmanagement.application.dto.responses.users.UserDTO;
-import com.api.businessmanagement.application.usecases.users.CreateUserUseCase;
+import com.api.businessmanagement.application.users.dto.requests.UserCreateDTO;
+import com.api.businessmanagement.application.users.dto.responses.UserDTO;
+import com.api.businessmanagement.application.users.usecases.CreateUserUseCase;
 
 import jakarta.validation.Valid;
 
@@ -26,7 +26,7 @@ public class CreateUserController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> execute(@RequestBody @Valid UserCreateDTO userCreateDTO) {
+	public ResponseEntity<UserDTO> execute(@RequestBody @Valid UserCreateDTO userCreateDTO) {
 		var createdUser = createUserUseCase.execute(userCreateDTO);
 
 		logger.info("USER CREATED SUCCESSFULLY: [POST] api/users");

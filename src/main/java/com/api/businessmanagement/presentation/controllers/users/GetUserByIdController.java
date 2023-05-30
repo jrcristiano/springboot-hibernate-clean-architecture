@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.businessmanagement.application.dto.responses.users.UserDTO;
-import com.api.businessmanagement.application.usecases.users.GetUserByIdUseCase;
+import com.api.businessmanagement.application.users.dto.responses.UserDTO;
+import com.api.businessmanagement.application.users.usecases.GetUserByIdUseCase;
 
 @RestController
 @RequestMapping("/api/users")

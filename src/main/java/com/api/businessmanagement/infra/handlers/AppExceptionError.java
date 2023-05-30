@@ -2,6 +2,8 @@ package com.api.businessmanagement.infra.handlers;
 
 import java.util.ArrayList;
 
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -16,19 +18,18 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.api.businessmanagement.infra.handlers.exceptions.BadRequestErrorException;
 import com.api.businessmanagement.infra.handlers.exceptions.ConflictErrorException;
 import com.api.businessmanagement.infra.handlers.exceptions.EntityNotFoundErrorException;
-import com.api.businessmanagement.infra.handlers.responses.ResponseError;
 
 @ControllerAdvice
 public class AppExceptionError extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(value = BadRequestErrorException.class)
 	public final ResponseEntity<ResponseError> handleBadRequestException(
-		Exception exception,
+		BadRequestErrorException ex,
 		WebRequest request
 	) {
 		var status = HttpStatus.BAD_REQUEST;
 
 		var details = new ArrayList<String>();
-		details.add(exception.getMessage());
+		details.add(ex.getMessage());
 
 		var responseError = new ResponseError()
 			.setMessage("Bad Request")
@@ -38,14 +39,11 @@ public class AppExceptionError extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler(value = EntityNotFoundErrorException.class)
-	public final ResponseEntity<ResponseError> handleEntityNotFoundException(
-		Exception exception,
-		WebRequest request
-	) {
+	public final ResponseEntity<ResponseError> handleEntityNotFoundException(EntityNotFoundErrorException ex) {
 		var status = HttpStatus.NOT_FOUND;
 
 		var details = new ArrayList<String>();
-		details.add(exception.getMessage());
+		details.add(ex.getMessage());
 
 		var responseError = new ResponseError()
 			.setMessage("Not Found")
@@ -55,14 +53,11 @@ public class AppExceptionError extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler(value = ConflictErrorException.class)
-	public final ResponseEntity<ResponseError> handleRequestMethodNotSupportedException(
-		Exception exception,
-		WebRequest request
-	) {
+	public final ResponseEntity<ResponseError> handleConflictErrorException(ConflictErrorException ex) {
 		var status = HttpStatus.CONFLICT;
 
 		var details = new ArrayList<String>();
-		details.add(exception.getMessage());
+		details.add(ex.getMessage());
 
 		var responseError = new ResponseError()
 			.setMessage("Conflict")

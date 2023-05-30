@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.api</groupId>
-	<artifactId>business-nanagement</artifactId>
+	<artifactId>businessmanagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>business-nanagement</name>
 	<description>A simple API Business Management</description>
