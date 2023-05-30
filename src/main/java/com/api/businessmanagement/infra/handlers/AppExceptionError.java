@@ -2,8 +2,6 @@ package com.api.businessmanagement.infra.handlers;
 
 import java.util.ArrayList;
 
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
